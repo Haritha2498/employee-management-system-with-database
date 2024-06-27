@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+    <div class="w-12/12">
+        <br>
+    <a href="/">
+        <button type="submit " class="p-4 h-16 border mr-10 bg-slate-300 hover:bg-slate-400 float-right" >HOME </button>
+        
+    </a> 
+    </div> 
+
+    <div class="w-8/12 mx-auto bg-slate-300 h-[50%] mt-40 text-xl p-10">
+        EMPLOYEE ID: <span id="empid"></span>
+        <br> <br>
+        EMPLOYEE NAME: <span id="empname"></span>
+        <br> <br>
+        EMPLOYEE ROLE: <span id="emprol"></span>
+    </div>
+
+    <p id="pid"></p>
+
+
+
+
+    <div class="mt-4 ml-[40%]">
+
+        
+        
+        <button type="submit " class="w-20 h-16 border ml-4 bg-slate-300 hover:bg-slate-400" onclick="update()"> UPDATE</button>
+
+        <form method="post" id="delete">
+
+        <button type="submit " class="w-20 h-16 border ml-4 bg-slate-300 hover:bg-slate-400" onclick="dele()"> DELETE </button>
+    </form>
+        
+    </div >
+
+
+    <script>
+
+
+function update(){
+            const id=window.location.pathname.split('/').pop();
+            
+            const url=`/update/${id}`;
+
+            window.location.href=url;
+        }
+
+
+function dele(){
+
+    const id=window.location.pathname.split('/').pop();
+
+    document.getElementById('delete').action = `/delete/${id}`;
+
+
+
+}
+
+
+
+        async function getdata(){
+
+            const url=window.location.href;
+            const id=window.location.pathname.split('/').pop();
+
+            const ul=`search/data/${id}`;
+            try{
+                const response=await fetch(`/search/data/${id}`);
+            
+            // if (!response.ok){
+            //     throw new Error('Failed to fetch blog details');
+            // }
+            const data=await response.json();
+
+
+            document.getElementById("empid").innerHTML=data.id;
+            document.getElementById("empname").innerHTML=data.name;
+            document.getElementById("emprol").innerHTML=data.role;
+        }
+
+        catch(error){
+            console.log("error");
+            document.getElementById("empid").innerHTML="no id found";
+        }
+        }
+
+        document.addEventListener('DOMContentLoaded',getdata);
+    </script>
+</body>
+</html>

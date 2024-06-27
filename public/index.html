@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-12/12">
+        <br>
+    <a href="/add">
+        <button type="submit " class="p-4 h-16 border mr-10 bg-slate-300 hover:bg-slate-400 float-right" >ADD EMPLOYEE DETAILS </button>
+        
+    </a> 
+    <a href="/view">
+        <button type="submit " class="p-4 h-16 border mr-10 bg-slate-300 hover:bg-slate-400 float-right" >VIEW EMPLOYEE DETAILS </button>
+        
+    </a> 
+    
+    </div> 
+
+    <div class="mt-40 ml-40">
+
+        
+        
+        <input type="text" class="w-[40%] h-16 border pl-4 text-orange-800" name="id" id="id" placeholder="ENTER ID">
+        <button type="submit " class="w-20 h-16 border ml-4 bg-slate-300 hover:bg-slate-400" onclick="search()" > search </button>
+        
+        
+    </div >
+
+
+    
+
+    <div class="text-center" id="result">
+
+    </div>
+
+    <script>
+        
+
+        function search(){
+            const id=document.getElementById("id").value;
+
+            const url=`/search/${id}`;
+            console.log(url);
+            window.location.href=url;
+        }
+    </script>
+
+
+
+    </body>
+</html>
